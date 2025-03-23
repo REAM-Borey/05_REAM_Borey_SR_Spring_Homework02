@@ -13,7 +13,8 @@ public interface StudentRepository {
             @Result(property = "studentName",column = "student_name"),
             @Result(property = "studentEmail",column = "student_email"),
             @Result(property = "studentPhoneNumber",column = "student_phone_number"),
-            @Result(property = "studentCourse",column = "student_id",one = @One(select ="org.example.borey.repository.CourseRepository.getCourseById"))
+            @Result(property = "studentCourse",column = "student_id",one = @One(select ="org.example.borey.repository.StudentRepository.getStudentById")),
+            @Result(property = "course",column = "course_id",many = @Many(select = "org.example.borey.repository.CourseRepository.getCourseById"))
     })
     @Select("""
         SELECT * FROM students sd RIGHT JOIN student_course sc ON sd.student_id = sc.student_id;
