@@ -2,6 +2,7 @@ package org.example.borey.controller;
 
 import lombok.RequiredArgsConstructor;
 import org.apache.ibatis.annotations.Param;
+import org.example.borey.model.entiry.Course;
 import org.example.borey.model.entiry.Student;
 import org.example.borey.model.request.StudentRequest;
 import org.example.borey.model.response.ApiResponse;
@@ -23,16 +24,16 @@ public class StudentController {
     private final StudentService studentService;
 
     @GetMapping
-    public ResponseEntity<ApiResponse<List<Student>>> getAllStudent(){
-
-        ApiResponse<List<Student>> students = ApiResponse.<List<Student>>builder()
-                .message("All Student have been successfully fetched")
-                .payload(studentService.getAllStudents())
-                .status(HttpStatus.OK)
-                .time(LocalDateTime.now())
-                .build();
-
-        return ResponseEntity.status(HttpStatus.OK).body(students);
+    public ResponseEntity<ApiResponse<List<Student>>> getAllStudent(@RequestParam("1") int page,
+                                                                    @RequestParam("10") int size){
+        return ResponseEntity.ok(
+                ApiResponse.<List<Student>>builder()
+                        .message("Get All Student successfully")
+                        .payload(studentService.getAllStudent(page,size))
+                        .status(HttpStatus.OK)
+                        .time(LocalDateTime.now())
+                        .build()
+        );
     }
 
     @GetMapping("{student-id}")

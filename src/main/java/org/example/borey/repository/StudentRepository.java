@@ -13,12 +13,12 @@ public interface StudentRepository {
             @Result(property = "studentName",column = "student_name"),
             @Result(property = "studentEmail",column = "student_email"),
             @Result(property = "studentPhoneNumber",column = "student_phone_number"),
-            @Result(property = "studentCourse",column = "student_course")
+            @Result(property = "studentCourse",column = "student_id",one = @One(select ="org.example.borey.repository.CourseRepository.getCourseById"))
     })
     @Select("""
-        select * from students;
+        SELECT * FROM students sd RIGHT JOIN student_course sc ON sd.student_id = sc.student_id;
     """)
-    List<Student> getAllStudent();
+    List<Student> getAllStudent(int page,int size);
 
 
     @ResultMap("studentMapper")

@@ -53,8 +53,7 @@ public interface CourseRepository {
 
 
     @Select("""
-        delete from courses where course_id #{id}
-                    RETRUNING *;
+        DELETE FROM courses WHERE course_id =#{id};
         """)
     @ResultMap("CourseMapper")
     Course deleteCourseById(int id);

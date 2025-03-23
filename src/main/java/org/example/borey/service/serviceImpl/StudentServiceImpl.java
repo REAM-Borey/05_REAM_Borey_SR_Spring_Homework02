@@ -16,6 +16,11 @@ public class StudentServiceImpl implements StudentService {
 
 
     @Override
+    public List<Student> getAllStudent(int page, int size) {
+        return studentRepositories.getAllStudent(page,size);
+    }
+
+    @Override
     public Student saveStudent(StudentRequest studentRequest) {
         return studentRepositories.saveStudent(studentRequest);
     }
@@ -29,10 +34,5 @@ public class StudentServiceImpl implements StudentService {
     @Override
     public Student getStudentById(Long id) {
         return studentRepositories.getStudentById(id);
-    }
-
-    @Override
-    public List<Student> getAllStudents() {
-        return studentRepositories.getAllStudent();
     }
 }

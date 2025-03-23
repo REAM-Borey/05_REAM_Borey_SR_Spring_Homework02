@@ -67,7 +67,7 @@ public class CourseController {
         );
     }
     @DeleteMapping("{courses-id}")
-    public ResponseEntity<ApiResponse<Course>> deleteCourseById(@Param("courses-id") int id){
+    public ResponseEntity<ApiResponse<Course>> deleteCourseById(@PathVariable("courses-id") int id){
         return ResponseEntity.ok(
                 ApiResponse.<Course>builder()
                         .message("Remove Course successfully")

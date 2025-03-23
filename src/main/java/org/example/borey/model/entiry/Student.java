@@ -15,4 +15,5 @@ public class Student {
     private String studentName;
     private String studentEmail;
     private String studentPhoneNumber;
+    private Course course;
 }
